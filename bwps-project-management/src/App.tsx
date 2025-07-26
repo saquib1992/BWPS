@@ -183,38 +183,38 @@ function App() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="bg-gray-900 border-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-100">Total Tasks</CardTitle>
-            <Calendar className="h-4 w-4 text-gray-400" />
+            <CardTitle className="text-sm font-medium text-white">Total Tasks</CardTitle>
+            <Calendar className="h-4 w-4 text-blue-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-100">{tasks.length}</div>
+            <div className="text-2xl font-bold text-white">{tasks.length}</div>
           </CardContent>
         </Card>
         <Card className="bg-gray-900 border-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-100">Materials</CardTitle>
-            <FileText className="h-4 w-4 text-gray-400" />
+            <CardTitle className="text-sm font-medium text-white">Materials</CardTitle>
+            <FileText className="h-4 w-4 text-green-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-100">{materials.length}</div>
+            <div className="text-2xl font-bold text-white">{materials.length}</div>
           </CardContent>
         </Card>
         <Card className="bg-gray-900 border-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-100">Pending Invoices</CardTitle>
-            <CreditCard className="h-4 w-4 text-gray-400" />
+            <CardTitle className="text-sm font-medium text-white">Pending Invoices</CardTitle>
+            <CreditCard className="h-4 w-4 text-yellow-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-100">{invoices.filter(i => i.status === 'pending').length}</div>
+            <div className="text-2xl font-bold text-white">{invoices.filter(i => i.status === 'pending').length}</div>
           </CardContent>
         </Card>
         <Card className="bg-gray-900 border-gray-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-gray-100">Cash Flow</CardTitle>
-            <TrendingUp className="h-4 w-4 text-gray-400" />
+            <CardTitle className="text-sm font-medium text-white">Cash Flow</CardTitle>
+            <TrendingUp className="h-4 w-4 text-emerald-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-gray-100">
+            <div className="text-2xl font-bold text-white">
               ${payments.reduce((sum, p) => sum + (p.type === 'income' ? p.amount : -p.amount), 0).toLocaleString()}
             </div>
           </CardContent>
@@ -223,8 +223,8 @@ function App() {
 
       <Card className="bg-gray-900 border-gray-700">
         <CardHeader>
-          <CardTitle className="text-gray-100">Monthly Task Progress</CardTitle>
-          <CardDescription className="text-gray-400">Track progress and cost allocation per month</CardDescription>
+          <CardTitle className="text-white">Monthly Task Progress</CardTitle>
+          <CardDescription className="text-gray-300">Track progress and cost allocation per month</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -234,23 +234,23 @@ function App() {
             </Button>
             {tasks.map(task => (
               <div key={task.id} className="border border-gray-700 rounded-lg p-4">
-                <h4 className="font-semibold text-gray-100 mb-2">{task.name}</h4>
-                <p className="text-sm text-gray-400 mb-2">Budget: ${task.budget.toLocaleString()}</p>
+                <h4 className="font-semibold text-white mb-2">{task.name}</h4>
+                <p className="text-sm text-gray-200 mb-2">Budget: ${task.budget.toLocaleString()}</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
-                  <Input placeholder="Month (YYYY-MM)" className="bg-gray-800 border-gray-700 text-gray-100" />
-                  <Input placeholder="Percentage" type="number" className="bg-gray-800 border-gray-700 text-gray-100" />
+                  <Input placeholder="Month (YYYY-MM)" className="bg-gray-800 border-gray-700 text-white" />
+                  <Input placeholder="Percentage" type="number" className="bg-gray-800 border-gray-700 text-white" />
                   <Button onClick={() => addMonthlyProgress(task.id, '2025-01', 25)} size="sm" className="bg-green-600 hover:bg-green-700">
                     Add Progress
                   </Button>
                 </div>
                 <div className="space-y-1">
                   {task.monthlyProgress.map((progress, idx) => (
-                    <div key={idx} className="flex justify-between text-sm text-gray-300">
+                    <div key={idx} className="flex justify-between text-sm text-gray-200">
                       <span>{progress.month}</span>
                       <span>{progress.percentage}% - ${progress.value.toLocaleString()}</span>
                     </div>
                   ))}
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-gray-300">
                     Total Progress: {task.monthlyProgress.reduce((sum, p) => sum + p.percentage, 0)}%
                   </div>
                 </div>
@@ -266,16 +266,16 @@ function App() {
     <div className="space-y-6">
       <Card className="bg-gray-900 border-gray-700">
         <CardHeader>
-          <CardTitle className="text-gray-100">Materials & Invoices</CardTitle>
-          <CardDescription className="text-gray-400">Manage materials and track invoices</CardDescription>
+          <CardTitle className="text-white">Materials & Invoices</CardTitle>
+          <CardDescription className="text-gray-300">Manage materials and track invoices</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 mb-4">
             <Select value={filterStatus} onValueChange={setFilterStatus}>
-              <SelectTrigger className="w-48 bg-gray-900 border-gray-700 text-gray-100">
+              <SelectTrigger className="w-48 bg-gray-800 border-gray-600 text-white">
                 <SelectValue placeholder="Filter by status" />
               </SelectTrigger>
-              <SelectContent className="bg-gray-900 border-gray-700">
+              <SelectContent className="bg-gray-800 border-gray-600">
                 <SelectItem value="all">All Status</SelectItem>
                 <SelectItem value="pending">Pending</SelectItem>
                 <SelectItem value="ordered">Ordered</SelectItem>
@@ -285,10 +285,10 @@ function App() {
               </SelectContent>
             </Select>
             <Select value={filterSupplier} onValueChange={setFilterSupplier}>
-              <SelectTrigger className="w-48 bg-gray-900 border-gray-700 text-gray-100">
+              <SelectTrigger className="w-48 bg-gray-800 border-gray-600 text-white">
                 <SelectValue placeholder="Filter by supplier" />
               </SelectTrigger>
-              <SelectContent className="bg-gray-900 border-gray-700">
+              <SelectContent className="bg-gray-800 border-gray-600">
                 <SelectItem value="all">All Suppliers</SelectItem>
                 <SelectItem value="ABC Materials">ABC Materials</SelectItem>
                 <SelectItem value="XYZ Construction">XYZ Construction</SelectItem>
@@ -300,7 +300,7 @@ function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div>
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold text-gray-100">Materials</h3>
+                <h3 className="text-lg font-semibold text-white">Materials</h3>
                 <Button onClick={addMaterial} size="sm" className="bg-green-600 hover:bg-green-700">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Material
@@ -309,17 +309,25 @@ function App() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-gray-700">
-                    <TableHead className="text-gray-300">Name</TableHead>
-                    <TableHead className="text-gray-300">Quantity</TableHead>
-                    <TableHead className="text-gray-300">Status</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Name</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Quantity</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Status</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredMaterials.map(material => (
                     <TableRow key={material.id} className="border-gray-700">
-                      <TableCell className="text-gray-100">{material.name}</TableCell>
-                      <TableCell className="text-gray-100">{material.quantity}</TableCell>
-                      <TableCell className="text-gray-100">{material.status}</TableCell>
+                      <TableCell className="text-white font-medium">{material.name}</TableCell>
+                      <TableCell className="text-gray-200">{material.quantity}</TableCell>
+                      <TableCell>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          material.status === 'ordered' ? 'text-blue-400 bg-blue-900/20' :
+                          material.status === 'delivered' ? 'text-green-400 bg-green-900/20' :
+                          'text-yellow-400 bg-yellow-900/20'
+                        }`}>
+                          {material.status}
+                        </span>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -328,7 +336,7 @@ function App() {
             
             <div>
               <div className="flex justify-between items-center mb-3">
-                <h3 className="text-lg font-semibold text-gray-100">Invoices</h3>
+                <h3 className="text-lg font-semibold text-white">Invoices</h3>
                 <Button onClick={addInvoice} size="sm" className="bg-green-600 hover:bg-green-700">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Invoice
@@ -337,17 +345,25 @@ function App() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-gray-700">
-                    <TableHead className="text-gray-300">Supplier</TableHead>
-                    <TableHead className="text-gray-300">Amount</TableHead>
-                    <TableHead className="text-gray-300">Status</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Supplier</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Amount</TableHead>
+                    <TableHead className="text-gray-100 font-semibold">Status</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredInvoices.map(invoice => (
                     <TableRow key={invoice.id} className="border-gray-700">
-                      <TableCell className="text-gray-100">{invoice.supplier}</TableCell>
-                      <TableCell className="text-gray-100">${invoice.amount.toLocaleString()}</TableCell>
-                      <TableCell className="text-gray-100">{invoice.status}</TableCell>
+                      <TableCell className="text-white font-medium">{invoice.supplier}</TableCell>
+                      <TableCell className="text-gray-200 font-medium">${invoice.amount.toLocaleString()}</TableCell>
+                      <TableCell>
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          invoice.status === 'paid' ? 'text-green-400 bg-green-900/20' :
+                          invoice.status === 'pending' ? 'text-yellow-400 bg-yellow-900/20' :
+                          'text-red-400 bg-red-900/20'
+                        }`}>
+                          {invoice.status}
+                        </span>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -363,16 +379,16 @@ function App() {
     <div className="space-y-6">
       <Card className="bg-gray-900 border-gray-700">
         <CardHeader>
-          <CardTitle className="text-gray-100">Payments & Invoicing</CardTitle>
-          <CardDescription className="text-gray-400">Track payments and manage invoicing</CardDescription>
+          <CardTitle className="text-white">Payments & Invoicing</CardTitle>
+          <CardDescription className="text-gray-300">Track payments and manage invoicing</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 mb-4">
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-48 bg-gray-900 border-gray-700 text-gray-100">
+              <SelectTrigger className="w-48 bg-gray-800 border-gray-600 text-white">
                 <SelectValue placeholder="Filter by type" />
               </SelectTrigger>
-              <SelectContent className="bg-gray-900 border-gray-700">
+              <SelectContent className="bg-gray-800 border-gray-600">
                 <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="income">Income</SelectItem>
                 <SelectItem value="expense">Expense</SelectItem>
@@ -387,20 +403,26 @@ function App() {
           <Table>
             <TableHeader>
               <TableRow className="border-gray-700">
-                <TableHead className="text-gray-300">Description</TableHead>
-                <TableHead className="text-gray-300">Amount</TableHead>
-                <TableHead className="text-gray-300">Date</TableHead>
-                <TableHead className="text-gray-300">Type</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Description</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Amount</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Date</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Type</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredPayments.map(payment => (
                 <TableRow key={payment.id} className="border-gray-700">
-                  <TableCell className="text-gray-100">{payment.description}</TableCell>
-                  <TableCell className="text-gray-100">${payment.amount.toLocaleString()}</TableCell>
-                  <TableCell className="text-gray-100">{payment.date}</TableCell>
-                  <TableCell className="text-gray-100">
+                  <TableCell className="text-white font-medium">{payment.description}</TableCell>
+                  <TableCell className="text-gray-200 font-medium">
                     <span className={payment.type === 'income' ? 'text-green-400' : 'text-red-400'}>
+                      {payment.type === 'income' ? '+' : '-'}${payment.amount.toLocaleString()}
+                    </span>
+                  </TableCell>
+                  <TableCell className="text-gray-200">{payment.date}</TableCell>
+                  <TableCell>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      payment.type === 'income' ? 'text-green-400 bg-green-900/20' : 'text-red-400 bg-red-900/20'
+                    }`}>
                       {payment.type}
                     </span>
                   </TableCell>
@@ -417,16 +439,16 @@ function App() {
     <div className="space-y-6">
       <Card className="bg-gray-900 border-gray-700">
         <CardHeader>
-          <CardTitle className="text-gray-100">Cash Flow</CardTitle>
-          <CardDescription className="text-gray-400">Monitor project cash flow and financial health</CardDescription>
+          <CardTitle className="text-white">Cash Flow</CardTitle>
+          <CardDescription className="text-gray-300">Monitor project cash flow and financial health</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 mb-4">
             <Select value={filterType} onValueChange={setFilterType}>
-              <SelectTrigger className="w-48 bg-gray-900 border-gray-700 text-gray-100">
+              <SelectTrigger className="w-48 bg-gray-800 border-gray-600 text-white">
                 <SelectValue placeholder="Filter by type" />
               </SelectTrigger>
-              <SelectContent className="bg-gray-900 border-gray-700">
+              <SelectContent className="bg-gray-800 border-gray-600">
                 <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="income">Income</SelectItem>
                 <SelectItem value="expense">Expense</SelectItem>
@@ -437,7 +459,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <Card className="bg-gray-800 border-gray-600">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-gray-300">Total Income</CardTitle>
+                <CardTitle className="text-sm text-white font-medium">Total Income</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-green-400">
@@ -447,7 +469,7 @@ function App() {
             </Card>
             <Card className="bg-gray-800 border-gray-600">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-gray-300">Total Expenses</CardTitle>
+                <CardTitle className="text-sm text-white font-medium">Total Expenses</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold text-red-400">
@@ -457,10 +479,13 @@ function App() {
             </Card>
             <Card className="bg-gray-800 border-gray-600">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-gray-300">Net Cash Flow</CardTitle>
+                <CardTitle className="text-sm text-white font-medium">Net Cash Flow</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-gray-100">
+                <div className={`text-2xl font-bold ${
+                  payments.reduce((sum, p) => sum + (p.type === 'income' ? p.amount : -p.amount), 0) >= 0 
+                    ? 'text-green-400' : 'text-red-400'
+                }`}>
                   ${payments.reduce((sum, p) => sum + (p.type === 'income' ? p.amount : -p.amount), 0).toLocaleString()}
                 </div>
               </CardContent>
@@ -470,11 +495,11 @@ function App() {
           <Table>
             <TableHeader>
               <TableRow className="border-gray-700">
-                <TableHead className="text-gray-300">Date</TableHead>
-                <TableHead className="text-gray-300">Description</TableHead>
-                <TableHead className="text-gray-300">Amount</TableHead>
-                <TableHead className="text-gray-300">Type</TableHead>
-                <TableHead className="text-gray-300">Running Balance</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Date</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Description</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Amount</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Type</TableHead>
+                <TableHead className="text-gray-100 font-semibold">Running Balance</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -484,15 +509,21 @@ function App() {
                 )
                 return (
                   <TableRow key={payment.id} className="border-gray-700">
-                    <TableCell className="text-gray-100">{payment.date}</TableCell>
-                    <TableCell className="text-gray-100">{payment.description}</TableCell>
-                    <TableCell className="text-gray-100">${payment.amount.toLocaleString()}</TableCell>
-                    <TableCell className="text-gray-100">
-                      <span className={payment.type === 'income' ? 'text-green-400' : 'text-red-400'}>
+                    <TableCell className="text-gray-200">{payment.date}</TableCell>
+                    <TableCell className="text-white font-medium">{payment.description}</TableCell>
+                    <TableCell className={`font-medium ${payment.type === 'income' ? 'text-green-400' : 'text-red-400'}`}>
+                      {payment.type === 'income' ? '+' : '-'}${payment.amount.toLocaleString()}
+                    </TableCell>
+                    <TableCell>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        payment.type === 'income' ? 'text-green-400 bg-green-900/20' : 'text-red-400 bg-red-900/20'
+                      }`}>
                         {payment.type}
                       </span>
                     </TableCell>
-                    <TableCell className="text-gray-100">${runningBalance.toLocaleString()}</TableCell>
+                    <TableCell className={`font-bold ${runningBalance >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      ${runningBalance.toLocaleString()}
+                    </TableCell>
                   </TableRow>
                 )
               })}
@@ -508,35 +539,35 @@ function App() {
       <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Building2 className="h-8 w-8 text-blue-500" />
-            <h1 className="text-xl font-bold text-gray-100">BWPS Project Management</h1>
+            <Building2 className="h-8 w-8 text-blue-400" />
+            <h1 className="text-xl font-bold text-white">BWPS Project Management</h1>
           </div>
           <div className="flex space-x-4">
             <Button
               variant={activeTab === 'dashboard' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('dashboard')}
-              className={activeTab === 'dashboard' ? 'bg-blue-600 hover:bg-blue-700' : 'text-gray-300 hover:text-gray-100'}
+              className={activeTab === 'dashboard' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-gray-200 hover:text-white hover:bg-gray-800'}
             >
               Dashboard
             </Button>
             <Button
               variant={activeTab === 'materials' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('materials')}
-              className={activeTab === 'materials' ? 'bg-blue-600 hover:bg-blue-700' : 'text-gray-300 hover:text-gray-100'}
+              className={activeTab === 'materials' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-gray-200 hover:text-white hover:bg-gray-800'}
             >
               Materials & Invoices
             </Button>
             <Button
               variant={activeTab === 'payments' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('payments')}
-              className={activeTab === 'payments' ? 'bg-blue-600 hover:bg-blue-700' : 'text-gray-300 hover:text-gray-100'}
+              className={activeTab === 'payments' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-gray-200 hover:text-white hover:bg-gray-800'}
             >
               Payments & Invoicing
             </Button>
             <Button
               variant={activeTab === 'cashflow' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('cashflow')}
-              className={activeTab === 'cashflow' ? 'bg-blue-600 hover:bg-blue-700' : 'text-gray-300 hover:text-gray-100'}
+              className={activeTab === 'cashflow' ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'text-gray-200 hover:text-white hover:bg-gray-800'}
             >
               Cash Flow
             </Button>
